@@ -46,7 +46,7 @@ All requests should use SSL.
 
 ## Versions
 
-All requests should prefix requests with a version. E.g. `registry.diamond.js.org/v1/foo`
+All requests should be prefixed with a version. E.g. `registry.diamond.js.org/v1/foo`
 
 | Name | Out of Service? |
 |------|-----------------|
