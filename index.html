@@ -5,6 +5,7 @@
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>diamond Registry Docs</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
 
     <link href="images/favicon.ico" rel="icon" type="image/ico" />
 
@@ -210,10 +211,14 @@
       </span>
     </a>
     <div class="tocify-wrapper">
-      <img src="images/logo.png" alt="Logo" />
-        <div class="lang-selector">
-              <a href="#" data-language-name="http">http</a>
-        </div>
+      <a href="https://diamond.js.org">
+        <img src="images/logo.png" alt="Logo" />
+      </a>
+      <ul class="tocify-header">
+        <li class="tocify-item" style="cursor: pointer;">
+          <a style="color: white; text-decoration: none;" href="https://diamond.js.org">Home</a>
+        </li>
+      </ul>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
         </div>
@@ -228,7 +233,9 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id="introduction">Introduction</h1>
-<pre class="highlight plaintext"><code>                 ___====-_  _-====___
+
+<pre class="highlight plaintext"><code style="color: red;">
+                 ___====-_  _-====___
            _--^^^#####//      \\#####^^^--_
         _-^##########// (    ) \\##########^-_
        -############//  |\^^/|  \\############-
@@ -245,6 +252,7 @@ _#/|##########/\######(   /\   )######/\##########|\#_
                    __\ | |  | | /__
                   (vvv(VVV)(VVV)vvv)
 </code></pre>
+
 <aside class="warning">The registry is not yet active.</aside>
 
 <p>Welcome to the diamond registry API! You can use the diamond registry to get and manage packages for diamond.</p>
@@ -320,6 +328,10 @@ _#/|##########/\######(   /\   )######/\##########|\#_
 </tbody></table>
 
 <h2 id="get-current-logged-in-user">Get Current Logged in User</h2>
+
+<aside class="notice">Requires authentication</aside>
+
+<p>This endpoint returns the current logged in user.</p>
 <pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/user</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">registry.diamond.js.org</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic eW91IHRvb2sgdGhlIHRpbWUgdG8gcmVhZCB0aGlzPyBnZw==</span>
@@ -336,10 +348,6 @@ _#/|##########/\######(   /\   )######/\##########|\#_
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<aside class="notice">Requires authentication</aside>
-
-<p>This endpoint returns the current logged in user.</p>
-
 <h3 id="http-request">HTTP Request</h3>
 
 <p><code class="prettyprint">GET /user</code></p>
@@ -349,6 +357,8 @@ _#/|##########/\######(   /\   )######/\##########|\#_
 <p>A <a href="#user-object">User Object</a> is returned including the <code class="prettyprint">packages</code> key.</p>
 
 <h2 id="get-user">Get User</h2>
+
+<p>This endpoint gets a user by username.</p>
 <pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/user/hackzzila</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">registry.diamond.js.org</span>
 </code></pre>
@@ -364,8 +374,6 @@ _#/|##########/\######(   /\   )######/\##########|\#_
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint gets a user by username.</p>
-
 <h3 id="http-request">HTTP Request</h3>
 
 <p><code class="prettyprint">GET /user/:name</code></p>
@@ -558,6 +566,8 @@ _#/|##########/\######(   /\   )######/\##########|\#_
 </tbody></table>
 
 <h2 id="get-package">Get Package</h2>
+
+<p>This endpoint gets a package by name.</p>
 <pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/package/foo</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">registry.diamond.js.org</span>
 </code></pre>
@@ -603,8 +613,6 @@ _#/|##########/\######(   /\   )######/\##########|\#_
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint gets a package by name.</p>
-
 <h3 id="http-request">HTTP Request</h3>
 
 <p><code class="prettyprint">GET /package/:name</code></p>
@@ -630,14 +638,14 @@ _#/|##########/\######(   /\   )######/\##########|\#_
 <p>A <a href="#package-object">Package Object</a> is returned including all keys.</p>
 
 <h2 id="download-package">Download Package</h2>
+
+<p>This endpoint gets package contents.</p>
 <pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/package/foo/0.1.0</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">registry.diamond.js.org</span>
 </code></pre>
 <blockquote>
 <p>The above request returns a gzipped tarball (<code class="prettyprint">.tar.gz</code>)</p>
 </blockquote>
-
-<p>This endpoint gets package contents.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -666,13 +674,597 @@ _#/|##########/\######(   /\   )######/\##########|\#_
 
 <h3 id="reponse-format">Reponse Format</h3>
 
-<p>A gzipped tarbal (<code class="prettyprint">.tar.gz</code>) file is returned.</p>
+<p>A gzipped tarball (<code class="prettyprint">.tar.gz</code>) file is returned.</p>
+
+<h2 id="create-package-version">Create Package Version</h2>
+
+<aside class="notice">Requires authentication</aside>
+
+<p>This endpoint creates a package if it doesn&rsquo;t exist, and adds a version.</p>
+<pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/package/foo</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">registry.diamond.js.org</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic eW91IHRvb2sgdGhlIHRpbWUgdG8gcmVhZCB0aGlzPyBnZw=</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW</span>
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="package"; filename=""
+Content-Type: "application/json"
+
+{
+  "name": "foo",
+  "version": "0.1.0",
+  "description": "Foo!",
+  "main": "index.sass",
+  "author": "Hackzzila",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^4.0.0"
+  }
+}
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="dist"; filename=""
+Content-Type: "application/gzip"
+
+GZIP CONTENTS
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+</code></pre>
+<blockquote>
+<p>The above request returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"foo"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Foo!"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-01T18:58:51.395Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-01T18:58:51.395Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"latest"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.1.0"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"authors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hackzzila"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin@hackzzila.com"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-01T18:58:47.263Z"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"versions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"0.1.0"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.1.0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"foo"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.1.0"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Foo!"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"main"</span><span class="p">:</span><span class="w"> </span><span class="s2">"index.sass"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"author"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hackzzila"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"license"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MIT"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"dependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"bootstrap"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^4.0.0"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"readme"</span><span class="p">:</span><span class="w"> </span><span class="s2">"# foo</span><span class="se">\n</span><span class="s2">Foo!"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-01T18:59:18.726Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"dist"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"shasum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ba25121304c70b5db67926521894965abf2412f7b2aa1ee6b505ea70571f058f"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://registry.diamond.js.org/package/foo/0.1.0"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST /package/:name</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>The name of the package you want to add</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<p>These params must be <code class="prettyprint">multipart/form-data</code></p>
+
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Optional</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>package</td>
+<td>file</td>
+<td>❌</td>
+<td><code class="prettyprint">package.json</code> contents</td>
+</tr>
+<tr>
+<td>readme</td>
+<td>file</td>
+<td>✅</td>
+<td><code class="prettyprint">readme.md</code> contents</td>
+</tr>
+<tr>
+<td>dist</td>
+<td>file</td>
+<td>❌</td>
+<td>A gzipped tarball containing all files to be published</td>
+</tr>
+</tbody></table>
+
+<h3 id="reponse-format">Reponse Format</h3>
+
+<p>A <a href="#package-object">Package Object</a> is returned including all keys.</p>
+
+<h2 id="delete-package">Delete Package</h2>
+
+<aside class="notice">Requires authentication</aside>
+
+<p>This endpoint deletes a package.</p>
+<pre class="highlight http tab-http"><code><span class="nf">DELETE</span> <span class="nn">/package/foo</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">registry.diamond.js.org</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic eW91IHRvb2sgdGhlIHRpbWUgdG8gcmVhZCB0aGlzPyBnZw=</span>
+</code></pre>
+<blockquote>
+<p>The above request returns nothing.</p>
+</blockquote>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">DELETE /package/:name</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>The name of the package you want to delete</td>
+</tr>
+</tbody></table>
+
+<h3 id="reponse-format">Reponse Format</h3>
+
+<p>No data is returned.</p>
+
+<h2 id="delete-package-version">Delete Package Version</h2>
+
+<aside class="notice">Requires authentication</aside>
+
+<p>This endpoint deletes a package version.</p>
+<pre class="highlight http tab-http"><code><span class="nf">DELETE</span> <span class="nn">/package/foo/0.1.0</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">registry.diamond.js.org</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic eW91IHRvb2sgdGhlIHRpbWUgdG8gcmVhZCB0aGlzPyBnZw=</span>
+</code></pre>
+<blockquote>
+<p>The above request returns nothing.</p>
+</blockquote>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">DELETE /package/:name/:version</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>The name of the package you want to get</td>
+</tr>
+<tr>
+<td>version</td>
+<td><a href="http://semver.org/">SemVer</a></td>
+<td>The version that you want to delete</td>
+</tr>
+</tbody></table>
+
+<h3 id="reponse-format">Reponse Format</h3>
+
+<p>No data is returned.</p>
+
+<h2 id="add-package-author">Add Package Author</h2>
+
+<aside class="notice">Requires authentication</aside>
+
+<p>This endpoint adds an author to a package.</p>
+<pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/package/foo/author/bar</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">registry.diamond.js.org</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic eW91IHRvb2sgdGhlIHRpbWUgdG8gcmVhZCB0aGlzPyBnZw=</span>
+</code></pre>
+<blockquote>
+<p>The above request returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"foo"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Foo!"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-01T18:58:51.395Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-01T18:58:51.395Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+  </span><span class="s2">"authors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hackzzila"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin@hackzzila.com"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-01T18:58:47.263Z"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bar"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bar@foo.baz"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-01T18:58:47.263Z"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"versions"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST /package/:name/author/:user</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>The name of the package you want to get</td>
+</tr>
+<tr>
+<td>user</td>
+<td>string</td>
+<td>The username of the user you want to add</td>
+</tr>
+</tbody></table>
+
+<h3 id="reponse-format">Reponse Format</h3>
+
+<p>A partial <a href="#package-object">Package Object</a> is returned including the authors key.</p>
+
+<h2 id="remove-package-author">Remove Package Author</h2>
+
+<aside class="notice">Requires authentication</aside>
+
+<p>This endpoint removes a package author.</p>
+<pre class="highlight http tab-http"><code><span class="nf">DELETE</span> <span class="nn">/package/foo/author/bar</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">registry.diamond.js.org</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic eW91IHRvb2sgdGhlIHRpbWUgdG8gcmVhZCB0aGlzPyBnZw=</span>
+</code></pre>
+<blockquote>
+<p>The above request returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"foo"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Foo!"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-01T18:58:51.395Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-01T18:58:51.395Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+  </span><span class="s2">"authors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hackzzila"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin@hackzzila.com"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-01T18:58:47.263Z"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"versions"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">DELETE /package/:name/author/:user</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>The name of the package you want to get</td>
+</tr>
+<tr>
+<td>user</td>
+<td>string</td>
+<td>The username of the user you want to delete</td>
+</tr>
+</tbody></table>
+
+<h3 id="reponse-format">Reponse Format</h3>
+
+<p>A partial <a href="#package-object">Package Object</a> is returned including the authors key.</p>
+
+<h2 id="add-edit-package-tag">Add/Edit Package Tag</h2>
+
+<aside class="notice">Requires authentication</aside>
+
+<p>This endpoint adds or edits tag.</p>
+<pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/package/foo/tag/baz</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">registry.diamond.js.org</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic eW91IHRvb2sgdGhlIHRpbWUgdG8gcmVhZCB0aGlzPyBnZw=</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.1.0"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>The above request returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"foo"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Foo!"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-01T18:58:51.395Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-01T18:58:51.395Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"latest"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.1.0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"baz"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.1.0"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"authors"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"versions"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST /package/:name/tag/:tag</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>The name of the package you want to get</td>
+</tr>
+<tr>
+<td>tag</td>
+<td>string</td>
+<td>The name of the tag you want to add/edit</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>version</td>
+<td><a href="http://semver.org/">SemVer</a></td>
+<td>The version you want to set the tag to</td>
+</tr>
+</tbody></table>
+
+<h3 id="reponse-format">Reponse Format</h3>
+
+<p>A partial <a href="#package-object">Package Object</a> is returned including the tags key.</p>
+
+<h2 id="remove-package-tag">Remove Package Tag</h2>
+
+<aside class="notice">Requires authentication</aside>
+
+<p>This endpoint removes a package tag.</p>
+<pre class="highlight http tab-http"><code><span class="nf">DELETE</span> <span class="nn">/package/foo/tag/baz</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">registry.diamond.js.org</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic eW91IHRvb2sgdGhlIHRpbWUgdG8gcmVhZCB0aGlzPyBnZw=</span>
+</code></pre>
+<blockquote>
+<p>The above request returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"foo"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Foo!"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-01T18:58:51.395Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-01T18:58:51.395Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"latest"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.1.0"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"authors"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"versions"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">DELETE /package/:name/author/:tag</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>The name of the package you want to get</td>
+</tr>
+<tr>
+<td>tag</td>
+<td>string</td>
+<td>The name of the tag you want to delete</td>
+</tr>
+</tbody></table>
+
+<h3 id="reponse-format">Reponse Format</h3>
+
+<p>A partial <a href="#package-object">Package Object</a> is returned including the tags key.</p>
+
+          <h1 id="search">Search</h1>
+
+<h2 id="search-packages">Search Packages</h2>
+
+<p>This endpoint searches all packages.</p>
+<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/search/package?q=foo</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">registry.diamond.js.org</span>
+</code></pre>
+<blockquote>
+<p>The above request returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"packages"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"foo"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Foo!"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-01T18:58:51.395Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-01T18:58:51.395Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"latest"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.1.0"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"authors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hackzzila"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin@hackzzila.com"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-01T18:58:47.263Z"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"versions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"0.1.0"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.1.0"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"foo"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.1.0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Foo!"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"main"</span><span class="p">:</span><span class="w"> </span><span class="s2">"index.sass"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"author"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hackzzila"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"license"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MIT"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"dependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"bootstrap"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^4.0.0"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="s2">"readme"</span><span class="p">:</span><span class="w"> </span><span class="s2">"# foo</span><span class="se">\n</span><span class="s2">Foo!"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-01T18:59:18.726Z"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"dist"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"shasum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ba25121304c70b5db67926521894965abf2412f7b2aa1ee6b505ea70571f058f"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://registry.diamond.js.org/package/foo/0.1.0"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET /search/package</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>q</td>
+<td>string</td>
+<td>The search query</td>
+</tr>
+</tbody></table>
+
+<h3 id="reponse-format">Reponse Format</h3>
+
+<p>A <a href="#package-object">Package Object</a> is returned including all keys.</p>
+
+<h2 id="search-users">Search Users</h2>
+
+<p>This endpoint searches all users.</p>
+<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/search/package?q=hackzzila</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">registry.diamond.js.org</span>
+</code></pre>
+<blockquote>
+<p>The above request returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"users"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hackzzila"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin@hackzzila.com"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-01T18:58:47.263Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"packages"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"foo"</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET /search/user</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>q</td>
+<td>string</td>
+<td>The search query</td>
+</tr>
+</tbody></table>
+
+<h3 id="reponse-format">Reponse Format</h3>
+
+<p>A <a href="#user-object">User Object</a> is returned including all keys.</p>
 
       </div>
       <div class="dark-box">
-          <div class="lang-selector">
-                <a href="#" data-language-name="http">http</a>
-          </div>
+
       </div>
     </div>
   </body>
