@@ -10,13 +10,14 @@ toc_footers:
 includes:
   - user
   - package
+  - search
 
 search: true
 ---
 
 # Introduction
 
-```text
+<pre class="highlight plaintext"><code style="color: red;">
                  ___====-_  _-====___
            _--^^^#####//      \\#####^^^--_
         _-^##########// (    ) \\##########^-_
@@ -33,7 +34,7 @@ _#/|##########/\######(   /\   )######/\##########|\#_
                     (  | |  | |  )
                    __\ | |  | | /__
                   (vvv(VVV)(VVV)vvv)
-```
+</code></pre>
 
 <aside class="warning">The registry is not yet active.</aside>
 

@@ -21,6 +21,10 @@ packages | Array\<string> | All packages the user is an author of. **May not be 
 
 ## Get Current Logged in User
 
+<aside class="notice">Requires authentication</aside>
+
+This endpoint returns the current logged in user.
+
 ```http
 GET /user HTTP/1.1
 Host: registry.diamond.js.org
@@ -40,10 +44,6 @@ Authorization: Basic eW91IHRvb2sgdGhlIHRpbWUgdG8gcmVhZCB0aGlzPyBnZw==
 }
 ```
 
-<aside class="notice">Requires authentication</aside>
-
-This endpoint returns the current logged in user.
-
 ### HTTP Request
 
 `GET /user`
@@ -55,6 +55,8 @@ A [User Object](#user-object) is returned including the `packages` key.
 
 
 ## Get User
+
+This endpoint gets a user by username.
 
 ```http
 GET /user/hackzzila HTTP/1.1
@@ -73,8 +75,6 @@ Host: registry.diamond.js.org
   ]
 }
 ```
-
-This endpoint gets a user by username.
 
 ### HTTP Request
 

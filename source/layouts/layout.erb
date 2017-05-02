@@ -21,6 +21,7 @@ under the License.
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title><%= current_page.data.title || "API Documentation" %></title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
 
     <%= favicon_tag 'images/favicon.ico' %>
 
@@ -44,18 +45,14 @@ under the License.
       </span>
     </a>
     <div class="tocify-wrapper">
-      <%= image_tag "logo.png" %>
-      <% if language_tabs.any? %>
-        <div class="lang-selector">
-          <% language_tabs.each do |lang| %>
-            <% if lang.is_a? Hash %>
-              <a href="#" data-language-name="<%= lang.keys.first %>"><%= lang.values.first %></a>
-            <% else %>
-              <a href="#" data-language-name="<%= lang %>"><%= lang %></a>
-            <% end %>
-          <% end %>
-        </div>
-      <% end %>
+      <a href="https://diamond.js.org">
+        <%= image_tag "logo.png" %>
+      </a>
+      <ul class="tocify-header">
+        <li class="tocify-item" style="cursor: pointer;">
+          <a style="color: white; text-decoration: none;" href="https://diamond.js.org">Home</a>
+        </li>
+      </ul>
       <% if current_page.data.search %>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -81,17 +78,7 @@ under the License.
         <% end %>
       </div>
       <div class="dark-box">
-        <% if language_tabs.any? %>
-          <div class="lang-selector">
-            <% language_tabs.each do |lang| %>
-              <% if lang.is_a? Hash %>
-                <a href="#" data-language-name="<%= lang.keys.first %>"><%= lang.values.first %></a>
-              <% else %>
-                <a href="#" data-language-name="<%= lang %>"><%= lang %></a>
-              <% end %>
-            <% end %>
-          </div>
-        <% end %>
+
       </div>
     </div>
   </body>
