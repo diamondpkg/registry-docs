@@ -302,27 +302,32 @@ _#/|##########/\######(   /\   )######/\##########|\#_
 <tr>
 <th>Key</th>
 <th>Type</th>
+<th>Always Present</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>username</td>
 <td>string</td>
+<td>✅</td>
 <td>The user&rsquo;s username</td>
 </tr>
 <tr>
 <td>email</td>
 <td>string</td>
+<td>✅</td>
 <td>The user&rsquo;s email</td>
 </tr>
 <tr>
 <td>createdAt</td>
 <td>date</td>
+<td>✅</td>
 <td>When the user was created</td>
 </tr>
 <tr>
 <td>packages</td>
 <td>Array&lt;string&gt;</td>
+<td>❌</td>
 <td>All packages the user is an author of. <strong>May not be present on all user objects</strong></td>
 </tr>
 </tbody></table>
@@ -444,42 +449,50 @@ _#/|##########/\######(   /\   )######/\##########|\#_
 <tr>
 <th>Key</th>
 <th>Type</th>
+<th>Always Present</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>name</td>
 <td>string</td>
+<td>✅</td>
 <td>The package name</td>
 </tr>
 <tr>
 <td>description</td>
 <td>string</td>
+<td>✅</td>
 <td>The latest version&rsquo;s description</td>
 </tr>
 <tr>
 <td>createdAt</td>
 <td>date</td>
+<td>✅</td>
 <td>When the package was created</td>
 </tr>
 <tr>
 <td>editedAt</td>
 <td>date</td>
+<td>✅</td>
 <td>When the package was last updated</td>
 </tr>
 <tr>
 <td>tags</td>
 <td>Object&lt;string, <a href="http://semver.org/">SemVer</a>&gt;</td>
+<td>❌</td>
 <td>An object mapping tag names to version numbers. <strong>May be empty on some package objects</strong></td>
 </tr>
 <tr>
 <td>authors</td>
 <td>Array&lt;<a href="#user-object">User</a>&gt;</td>
+<td>❌</td>
 <td>An array of all package authors. <strong>May be empty on some package objects</strong></td>
 </tr>
 <tr>
 <td>versions</td>
 <td>Object&lt;<a href="http://semver.org/">SemVer</a>, <a href="#version-object">Version</a>&gt;</td>
+<td>❌</td>
 <td>An object mapping version numbers to version objects. <strong>May be empty or not full on some package objects</strong></td>
 </tr>
 </tbody></table>
