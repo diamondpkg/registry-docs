@@ -69,7 +69,7 @@ Host: registry.diamond.js.org
 
 ### Reponse Format
 
-A [Package Object](#package-object) is returned including all keys.
+An array of [Package Objects](#package-object) is returned including all keys.
 
 
 
@@ -112,4 +112,4 @@ Host: registry.diamond.js.org
 
 ### Reponse Format
 
-A [User Object](#user-object) is returned including all keys.
+An array of [User Objects](#user-object) is returned including all keys.
