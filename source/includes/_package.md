@@ -42,15 +42,15 @@
 }
 ```
 
-Key | Type | Description
---------- | ------- | -----------
-name | string | The package name
-description | string | The latest version's description
-createdAt | date | When the package was created
-editedAt | date | When the package was last updated
-tags | Object\<string, [SemVer](http://semver.org/)> | An object mapping tag names to version numbers. **May be empty on some package objects**
-authors | Array\<[User](#user-object)> | An array of all package authors. **May be empty on some package objects**
-versions | Object\<[SemVer](http://semver.org/), [Version](#version-object)> | An object mapping version numbers to version objects. **May be empty or not full on some package objects**
+Key | Type | Always Present | Description
+--- | ---- | -------------- | -----------
+name | string | ✅ | The package name
+description | string | ✅ | The latest version's description
+createdAt | date | ✅ | When the package was created
+editedAt | date | ✅ | When the package was last updated
+tags | Object\<string, [SemVer](http://semver.org/)> | ❌ | An object mapping tag names to version numbers. **May be empty on some package objects**
+authors | Array\<[User](#user-object)> | ❌ | An array of all package authors. **May be empty on some package objects**
+versions | Object\<[SemVer](http://semver.org/), [Version](#version-object)> | ❌ | An object mapping version numbers to version objects. **May be empty or not full on some package objects**
 
 
 

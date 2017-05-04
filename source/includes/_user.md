@@ -12,12 +12,12 @@
 }
 ```
 
-Key | Type | Description
---------- | ------- | -----------
-username | string | The user's username
-email | string | The user's email
-createdAt | date | When the user was created
-packages | Array\<string> | All packages the user is an author of. **May not be present on all user objects**
+Key       | Type           | Always Present | Description
+--------- | -------------- | -------------- | -----------
+username  | string         | ✅ | The user's username
+email     | string         | ✅ | The user's email
+createdAt | date           | ✅ | When the user was created
+packages  | Array\<string> | ❌ | All packages the user is an author of. **May not be present on all user objects**
 
 ## Get Current Logged in User
 
